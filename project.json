@@ -3,6 +3,7 @@
   "description": "Robotic Enterprise Framework",
   "main": "Main.xaml",
   "dependencies": {
+    "System.Text.RegularExpressions": "[4.3.1]",
     "UiPath.Excel.Activities": "[2.20.2]",
     "UiPath.PDF.Activities": "[3.16.0]",
     "UiPath.System.Activities": "[23.4.5]",

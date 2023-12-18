@@ -1,15 +1,17 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="GetFieldsFromText" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="GetFieldsFromText" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="inExtractedText" Type="InArgument(x:String)" />
     <x:Property Name="inNameLogic" Type="InArgument(x:String)" />
-    <x:Property Name="outExtractedName" Type="OutArgument(x:String)" />
     <x:Property Name="inEmailLogic" Type="InArgument(x:String)" />
     <x:Property Name="outExtractedEmail" Type="OutArgument(x:String)" />
+    <x:Property Name="outFirstName" Type="OutArgument(x:String)" />
+    <x:Property Name="outMiddleName" Type="OutArgument(x:String)" />
+    <x:Property Name="outLastName" Type="OutArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>993,571</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1514,2448</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetFieldsFromText_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -38,6 +40,8 @@
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
       <x:String>System.Reflection</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.ComponentModel</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -79,24 +83,33 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetFieldsFromText" sap:VirtualizedContainerService.HintSize="558,1041" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetFieldsFromText" sap:VirtualizedContainerService.HintSize="738,2383" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="extractedName" />
       <Variable x:TypeArguments="x:String" Name="beforeText" />
       <Variable x:TypeArguments="x:String" Name="afterText" />
       <Variable x:TypeArguments="x:String" Name="extractedEmail" />
+      <Variable x:TypeArguments="s:String[]" Name="splitNames" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Sequence | Get Name from PDF Extract" sap:VirtualizedContainerService.HintSize="496,81" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Sequence | Get Name from PDF Extract" sap:VirtualizedContainerService.HintSize="676,618" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -116,24 +129,125 @@
           <InArgument x:TypeArguments="x:String">[inNameLogic.Split("|"c)(1)]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign DisplayName="Assign | Get Name" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign DisplayName="Assign | Extract Name" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[extractedName]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[inExtractedText.Substring(instr(inExtractedText,beforeText)+beforeText.Length,instr(inExtractedText,afterText)-(instr(inExtractedText,beforeText)+beforeText.Length+1))]</InArgument>
+          <InArgument x:TypeArguments="x:String">[inExtractedText.Substring(instr(inExtractedText,beforeText)+beforeText.Length,instr(inExtractedText,afterText)-(instr(inExtractedText,beforeText)+beforeText.Length+1)).Trim]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign DisplayName="Assign | Trim and Assign to Argument" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[extractedName]" />
+    </Sequence>
+    <Sequence DisplayName="Sequence | Split Name to First Middle Last" sap:VirtualizedContainerService.HintSize="676,1015" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Assign | Split Names to List" sap:VirtualizedContainerService.HintSize="547,82" sap2010:WorkflowViewState.IdRef="Assign_9">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[outExtractedName]</OutArgument>
+          <OutArgument x:TypeArguments="s:String[]">[splitNames]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[extractedName.Trim]</InArgument>
+          <InArgument x:TypeArguments="s:String[]">[extractedName.split(" "c)]</InArgument>
         </Assign.Value>
       </Assign>
+      <ui:LogMessage DisplayName="Log Message | Length of Split Names" sap:VirtualizedContainerService.HintSize="547,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;The Length of Names Split is &quot;+splitNames.Length.ToString]" />
+      <ui:IfElseIf DisplayName="Else If | Assign First, Middle, Last Name | Based on SplitNames Length" sap:VirtualizedContainerService.HintSize="547,601" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+        <ui:IfElseIf.ConditionBlocks>
+          <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+            <ui:IfElseIfBlock BlockType="If" Condition="[splitNames.Length = 2]">
+              <ui:IfElseIfBlock.Then>
+                <Sequence DisplayName="Body | Assign First, Middle, Last Name" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign DisplayName="Assign | First Name | Length 2" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_13">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[outFirstName]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[splitNames(0).ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Assign | Middle Name to Blank | Length 2" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_14">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[outMiddleName]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[string.Empty]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Assign | Last Name | Length 2" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_15">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[outLastName]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[splitNames(1).ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </ui:IfElseIfBlock.Then>
+            </ui:IfElseIfBlock>
+            <ui:IfElseIfBlock BlockType="ElseIf" Condition="[splitNames.Length &gt; 2 And splitNames.Length &lt; 5]">
+              <ui:IfElseIfBlock.Then>
+                <Sequence DisplayName="Body | Assign First, Middle, Last Name" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign DisplayName="Assign | First Name | Length 3 to 4" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_16">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[outFirstName]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[splitNames(0).ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Assign | Middle Name | Length 3 to 4" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_17">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[outMiddleName]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[splitNames(1).ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Assign | Last Name | Length 3 to 4" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_18">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[outLastName]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[splitNames(2).ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </ui:IfElseIfBlock.Then>
+            </ui:IfElseIfBlock>
+            <ui:IfElseIfBlock BlockType="Else">
+              <ui:IfElseIfBlock.Then>
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:Comment sap:VirtualizedContainerService.HintSize="388,56" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Exception" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Error]" Message="[&quot;Exception&quot;]" />
+                </Sequence>
+              </ui:IfElseIfBlock.Then>
+            </ui:IfElseIfBlock>
+          </sc:BindingList>
+        </ui:IfElseIf.ConditionBlocks>
+      </ui:IfElseIf>
     </Sequence>
-    <Sequence DisplayName="Sequence | Get Email from PDF Extract" sap:VirtualizedContainerService.HintSize="496,559" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Sequence | Get Email from PDF Extract" sap:VirtualizedContainerService.HintSize="676,559" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -169,11 +283,9 @@
           <OutArgument x:TypeArguments="x:String">[outExtractedEmail]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[extractedEmail.Trim]</InArgument>
+          <InArgument x:TypeArguments="x:String">[extractedEmail.Replace(Environment.NewLine, String.Empty).Trim]</InArgument>
         </Assign.Value>
       </Assign>
     </Sequence>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="496,85" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[outExtractedName]" />
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="496,85" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[outExtractedEmail]" />
   </Sequence>
 </Activity>
