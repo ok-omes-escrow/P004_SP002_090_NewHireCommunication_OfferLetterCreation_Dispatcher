@@ -1,11 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Initialize_Applications" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Initialize_Applications" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>993,2001</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>966,1156.6666666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -114,9 +114,9 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="698,1936" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="592,1092" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
-      <Variable x:TypeArguments="sd:DataTable" Name="inDtOfferLetter" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_OfferLetter" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -124,149 +124,43 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log message (Initialize applications)" sap:VirtualizedContainerService.HintSize="636,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Opening applications...&quot;]" />
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="636,242" sap2010:WorkflowViewState.IdRef="CommentOut_6">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="503,163" sap2010:WorkflowViewState.IdRef="Sequence_17">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: New Hire Communication - Employee Details - 1" sap:VirtualizedContainerService.HintSize="441,52" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="601ec705-d957-4d08-a539-e1f31fa91907" Version="V2">
-            <uix:NApplicationCard.Body>
-              <ActivityAction x:TypeArguments="x:Object">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-                </ActivityAction.Argument>
-                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="644,1731" sap2010:WorkflowViewState.IdRef="Sequence_10">
-                  <Sequence.Variables>
-                    <Variable x:TypeArguments="sd:DataTable" Name="inSharepointData" />
-                    <Variable x:TypeArguments="x:String" Name="outFileName" />
-                  </Sequence.Variables>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[inSharepointData]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='New column 1' ReferenceName='Column1'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='New column 2' ReferenceName='Column2'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='New column 3' ReferenceName='Column3'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='New column 4' ReferenceName='Column4'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='New column 5' ReferenceName='Column5'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;/row&gt;&lt;column css-selector='.od-FieldRenderer-text.fieldText_dc7ba0fe' name='Column1' attr='fulltext' /&gt;&lt;column exact='1' name='Column2' attr='fulltext'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column3' attr='fulltext'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column4' attr='fulltext'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='7' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column5' attr='fulltext'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='9' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="582,157" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="601ec705-d957-4d08-a539-e1f31fa91907" Version="V3">
-                    <uix:NExtractData.Target>
-                      <uix:TargetAnchorable DesignTimeRectangle="139, 379, 1808, 295" DesignTimeScaleFactor="1" FriendlyName="'1145678JR22644Netw…'" FullSelectorArgument="&lt;webctrl aria-role='presentation' class='ms-List-page' parentid='appRoot' tag='DIV' /&gt;" Guid="a78b1794-0260-4e7c-9b85-8fc5be4f0459" InformativeScreenshot="043fd31ffc2ec2df9f40a6359bb95696.png" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='{}' title='New Hire Communication - Employee Details - 1' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
-                    </uix:NExtractData.Target>
-                  </uix:NExtractData>
-                  <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[inSharepointData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="582,1463" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
-                    <ui:ForEachRow.Body>
-                      <ActivityAction x:TypeArguments="sd:DataRow">
-                        <ActivityAction.Argument>
-                          <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
-                        </ActivityAction.Argument>
-                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="548,1346" sap2010:WorkflowViewState.IdRef="Sequence_12">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="486,85" sap2010:WorkflowViewState.IdRef="MessageBox_4" Text="[CurrentRow.Item(0).ToString]" />
-                          <uix:NClick ActivateBefore="True" ClickType="Double" DisplayName="Click '145678'" sap:VirtualizedContainerService.HintSize="486,157" sap2010:WorkflowViewState.IdRef="NClick_5" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="601ec705-d957-4d08-a539-e1f31fa91907" Version="V3">
-                            <uix:NClick.Target>
-                              <uix:TargetAnchorable BrowserURL="https://officemgmtentserv.sharepoint.com/sites/NewHireCommunication/Lists/New%20Hire%20Communication%20%20Employee%20Details/AllItems.aspx" DesignTimeRectangle="499, 390, 130, 16" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'145678'" FullSelectorArgument="&lt;webctrl aaname='{{CurrentRow.Item(0).ToString}}' parentid='row467-0' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='{{CurrentRow.Item(0).ToString}}' parentid='row467-0' tag='DIV' type='' class='od-FieldRenderer-text fieldText_dc7ba0fe' check:innerText='145678' /&gt;" Guid="a99df1bd-d259-4e2e-9413-d6d0aaa07898" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIYAAAAUCAYAAABI10XZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF2SURBVGhD7ZdNjsIwDEbnoGjEMdghjtALtJfokh6h2x6BRS9h4vwU23WGjkYTNt+TKpSmSZD8+hm+CAAHiAFcIAZwgRjABWIAF4gBXBwxFuq+T9QteahYabyd6DKteUz0mK50Ds+XS69Le6W5nuZwxz4v58r+6d6VxtcxoDFKjHlIRerCpyvG0seiSTF4jS8RS/G+uCxK2S9KM+TN+KzbnR5pBBrjthK/2Pw29zSKQjLz4BdfFrwOy1PSwp6r50BbDotRCq0LLqM/XOVtD0RhppQwdm4jpIKUZ5cY3hrQhGNirHe65FivJ4H8/ZGF2VpBGmvZ+N4+bfjsKBLayEc5IIaO9B9bxPaW70XYrWPZVCKYNTyPVvIx3ooR4720A3lVWkO5b1PHisFjOS9TqbBLLtCMX/z4TNQTw7zx6l+F/YfitRF+Rp5r14CW/FGMVMySIlYYmTZ6P92eNmL7eO1X+w7g/3HFAABiABeIAVwgBnCBGMCB6An+Z/3g2FEyUAAAAABJRU5ErkJggg==" InformativeScreenshot="dae1c97c00d029a98bc7e576629f4673.png" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='{}' title='New Hire Communication - Employee Details - 1' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive" />
-                            </uix:NClick.Target>
-                          </uix:NClick>
-                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,397" sap2010:WorkflowViewState.IdRef="CommentOut_3">
-                            <ui:CommentOut.Body>
-                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,318" sap2010:WorkflowViewState.IdRef="Sequence_14">
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                                <uix:NGetAttributeGeneric x:TypeArguments="x:String" Attribute="aaname" DisplayName="Get Attribute 'Add or'" sap:VirtualizedContainerService.HintSize="388,207" sap2010:WorkflowViewState.IdRef="NGetAttributeGeneric`1_1" Result="[outFileName]" ScopeIdentifier="601ec705-d957-4d08-a539-e1f31fa91907" Version="V3">
-                                  <uix:NGetAttributeGeneric.Target>
-                                    <uix:TargetAnchorable BrowserURL="https://officemgmtentserv.sharepoint.com/sites/NewHireCommunication/Lists/New%20Hire%20Communication%20%20Employee%20Details/OfferLetterTestView.aspx" DesignTimeRectangle="1111, 888, 358, 19" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Add or'" FullSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='{}' title='New Hire Communication - Employee Details - 1' /&gt;&lt;webctrl aaname='*.pdf' parentid='appRoot' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl class='ReactFieldEditor-placeHolder' parentid='appRoot' tag='DIV' type='' aaname='*' check:innerText='*' /&gt;" Guid="e5239e7e-592d-466f-83cc-cbff8c6d2834" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAWoAAAAXCAYAAAAiEwVIAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASESURBVHhe7Z0xb1RXEIX5dZYsWfIviBAliigTEjoQjRVEl6QDYcmKkRtMhekCDUoHdKSwvL+AyJLl7kXf4mOOx/OWLRA8rc8nXb1378ydO/fuzvHb1/ja2traEEIIYTocHh4O29vbw/r6+oBGR6hDCGGi7O3tRahDCGHKHB8fR6hDCGHqRKhDCGHiRKhDCGHiRKhDCGHijAr17OhouPXjzeH9u7dnI+P89/HjcP/e3fmcMZ48fjS8PHhx1gtTY5nPMITwfRgVaoRV7UtEqL8d9Ry/lsBOTajZ4zLfvRCuAq1QU7QPH/w2zGZHSxVvhPrbEaEO4erRCjWvO1QkncCenp7OhfzG9R/m7enuX5eKnDmy4/vnH78vFGr3p7kv+SgGtu51DP7Y8eOVjXLxuHd++XkuSKCYz/efzW2aw7j8q1C4ze06D8+rjvlcz69Sz1Y513Fi/PPmzfyqMez44c+8Oi7qPuhLqF+/+vs8pp9XZ+dsfS33B7fJH7QXYsnuZ8K5ag5NZ+jjdU8hrDKtUFMQLjBeFCoyF1L8vdCw+RwJg89xGK+iQN9z8ILtIIbnADUP+hLXmhNX+rIT59fbP53Hw9/j13Pw2IC/1ube9+e2CvERMKhrAGt4n5j1jyTxadCdpefCvH8/fDj3U15aW3uqduZxHopVc63r0lee8vU8WEexYdF5AjnrPoRV55JQU0gUlArICwyqHboiVIGKKjBizN8LtRZpRy3sLi55Msa1xiR3F+Y6v8vfY9Rzcf86F3+e/rXWIuq+aiw/+zE0pzsT0cXx/VW7Ynkunms9X8A+lkc9P48F+Lqwh3CVuCTUFAhPlrUtKkAv4q7goQqMGPP3dbo1K7WwiUth133oqbjGxJ8+V3Ax8Xunigvr4+OxNLfmQavxBHHcz/dVz5E16vl1azKn8xWdzc+os2u/wj8D7n19NezdedazrJ8n4E+M+ssphFXnglAvI0i1oIAxPY12MTTmAiPG1qSvQuUeH3zHqIWN76Kn1hqT/dDXvmpexK75E5s1FEM5e+6gsWWo69R9VTv5uoDWvEFzOpuocQA/nVFnr/vyXBn3vJ0uD+L696ru28HXf/2EsOpcEOpaLMILCxtPqi4WFJQ/5dBXgQPzeBLyOQ7j/rNWa6iQuXq8jq6wGRubV2OyJn3l4HsGroveUYNi+Dzgfpmf7XVN9X1f3Nc1XUC7vn9eXD0X/PSOugoxebA+eXR2cvF9Elu5al23i7pPIK5/9zwW8N7e91RzCWGVuSDUFIYXh0PheNFShPo5SxF1RSy74kosOrDJn+ZF7IIxRi1s4XnQ5FNjsif6EopOTLj3WN1+iN/lWvc3th9fgz8MPLH7vjhjxv2PhmIrpq/F58S45+p2xenEz8+os5OXnw9xu1zrWt3ZMu5CzVXfMfz8XDQWwlXhglCHEEKYHhHqEEKYOOdCPZvNzoZCCCFMhZOTk89Cvbu7ezYcQghhKhwcHHwSav554sbGxrC/vz//ty8hhBC+LzxJI9Kbm5ufhHpnZ2d+k5aWlpY2vba1tTX8D0ndMZZtFc/ZAAAAAElFTkSuQmCC" InformativeScreenshot="7062696c1930e64afacd1278fb3a943f.png" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='{}' title='New Hire Communication - Employee Details - 5' /&gt;" SearchSteps="Selector, Image" Version="V2" Visibility="Interactive">
-                                      <uix:TargetAnchorable.Anchors>
-                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                          <uix:Target DesignTimeRectangle="1109, 880, 426, 36" ElementType="Button" FriendlyName="'Add or'" FullSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='{}' title='New Hire Communication - Employee Details - 1' /&gt;&lt;webctrl aaname='Attachments' tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-label='Attachments, , press enter to edit.' aria-role='button' tag='DIV' type='' class='ReactFieldEditor-core--display' aaname='' check:innerText='Add or remove attachments' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image" />
-                                        </scg:List>
-                                      </uix:TargetAnchorable.Anchors>
-                                    </uix:TargetAnchorable>
-                                  </uix:NGetAttributeGeneric.Target>
-                                </uix:NGetAttributeGeneric>
-                              </Sequence>
-                            </ui:CommentOut.Body>
-                          </ui:CommentOut>
-                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,275" sap2010:WorkflowViewState.IdRef="CommentOut_4">
-                            <ui:CommentOut.Body>
-                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,196" sap2010:WorkflowViewState.IdRef="Sequence_15">
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="388,85" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[outFileName]" />
-                              </Sequence>
-                            </ui:CommentOut.Body>
-                          </ui:CommentOut>
-                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''" sap:VirtualizedContainerService.HintSize="486,157" sap2010:WorkflowViewState.IdRef="NClick_6" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="601ec705-d957-4d08-a539-e1f31fa91907" Version="V3">
-                            <uix:NClick.Target>
-                              <uix:TargetAnchorable BrowserURL="https://officemgmtentserv.sharepoint.com/sites/NewHireCommunication/Lists/New%20Hire%20Communication%20%20Employee%20Details/AllItems.aspx" DesignTimeRectangle="1852, 132, 16, 32" DesignTimeScaleFactor="1" FriendlyName="'I'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;button&amp;gt;i' parentid='appRoot' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='appRoot' tag='I' class='ms-Icon ms-Icon--Cancel css-226' aaname='' /&gt;" Guid="3a4e3a17-0679-497f-b7a7-9bdd24d0f537" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABQAAAAkCAYAAACJ8xqgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACqSURBVEhL7dM7DoMwDIDhXhW1d2BCPQhj1YWRhaN06MKSG7QDXVwZHMkQx0Zy1YX8YxR9yvMEP66A/gro7/Dg9IS2vsJ9fNFAvk8YoKlv8JhogEpWOE8862ic0wUaYIlb1lANw7JnKKEWhqmXwtH32JsYpoLYglZw2aw2139BfmZ8+1rmpfAz24OKoITFLDQBNSymoWuQvp71NLAZ3fP1vBXQXwH9HQ4E+AJ6KPyPqJVGYAAAAABJRU5ErkJggg==" InformativeScreenshot="277c4af7656e14a74fdeaf9c4230ef04.png" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='{}' title='New Hire Communication - Employee Details - 1' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive">
-                                <uix:TargetAnchorable.Anchors>
-                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                                    <uix:Target DesignTimeRectangle="1786, 140, 16, 16" FriendlyName="''" FullSelectorArgument="&lt;webctrl aaname='' parentid='appRoot' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='' parentid='appRoot' tag='I' type='' class='ms-Button-icon icon-237' check:innerText='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADXSURBVDhP5dMxCsIwGIZhj+Ap3LyBo5uLi4sHEcErFKFTF1c3dwdHF4kUJFmkKJLFWZeCOHzmpymNpbRpyCD4Qmha/j4ESjvw3P+CDGLcBWtcS8jKWXqeZYDFw+rymfLs9/0vghxi4hXMeuurA8iRbKUCHriGI/VB+og3HKmecgAphQVDHCOG52sPbrzbAjROlmNqf4to73RCqgqjfVELsBmjLEE7jDLA8u9EqwchgPQwBwt2jRilwfruqwHicA2xqMcoC1DiPJvipMCLkLUYZXXCNnkGgQ9IQMhHESyB6AAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
-                                  </scg:List>
-                                </uix:TargetAnchorable.Anchors>
-                              </uix:TargetAnchorable>
-                            </uix:NClick.Target>
-                          </uix:NClick>
-                        </Sequence>
-                      </ActivityAction>
-                    </ui:ForEachRow.Body>
-                  </ui:ForEachRow>
-                </Sequence>
-              </ActivityAction>
-            </uix:NApplicationCard.Body>
-            <uix:NApplicationCard.TargetApp>
-              <uix:TargetApp Area="-8, -8, 1936, 1056" BrowserType="Edge" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEUSURBVDhPY0AHzDkFBkC8H4j/I2EQ3wCqBDcAKQLi91BN6Bgkjt8QoIL7SBqw4ftQpQjA3Nz+Hoj/48VNbciGOEC1QgBWDVgwo6UNYQMmnjz9Hxkgy/F4+f6Xmr0Qhu8DcQCGASAAMgTETtq0BS4Owry+AcgGwHAAigEXXrwEG7Lw4qX/ypOnEWPAfRQDhLv7/zcePPz//fcfYAziEzDgP4oBIGfDDAEBo1nzSDMAZCsMHHjwEC4OwqKRcdgMQPUCPiydnPFffvEqdAPAgUgwIbE2toINUFy2FqYREY3oAKjQAaQYHWtOnfPf/NgF1ESEDQAVCQDxfSAGaUDGIDEBqDL8AKjQAIjPQzWCMIiNJScyMAAAIGu1wTJAuKMAAAAASUVORK5CYII=" InformativeScreenshot="6e726d8c85eeda890799b7093955a4af.jpg" Selector="&lt;html app='msedge.exe' htmlwindowname='{}' title='New Hire Communication - Employee Details - 1' /&gt;" Title="New Hire Communication - Employee Details - 1" Url="[in_Config(&quot;SharePointURL&quot;).ToString]" />
-            </uix:NApplicationCard.TargetApp>
+    <ui:LogMessage DisplayName="Log message (Initialize applications)" sap:VirtualizedContainerService.HintSize="530,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Opening applications...&quot;]" />
+    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope | Get Queue Data" sap:VirtualizedContainerService.HintSize="530,172" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_2">
+      <ueab:ExcelProcessScopeX.Body>
+        <ActivityAction x:TypeArguments="ui:IExcelProcess">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do | Open Excel File | Offer Letter Input" sap:VirtualizedContainerService.HintSize="450,84.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_18">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-          </uix:NApplicationCard>
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
-    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="636,747" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_2">
-      <ueab:ExcelProcessScopeX.Body>
-        <ActivityAction x:TypeArguments="ui:IExcelProcess">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="602,660" sap2010:WorkflowViewState.IdRef="Sequence_18">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="540,549" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" WorkbookPath="[in_Config(&quot;OfferLetterInputExcel&quot;).ToString]">
+            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Excel File | Open Offer Input Excel File" sap:VirtualizedContainerService.HintSize="540,566" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" WorkbookPath="[in_Config(&quot;OfferLetterInputExcel&quot;).ToString]">
               <ueab:ExcelApplicationCard.Body>
                 <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="506,280" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                  <Sequence DisplayName="Do | Read Queue Data" sap:VirtualizedContainerService.HintSize="506,285.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_19">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ueab:ReadRangeX DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="444,169" sap2010:WorkflowViewState.IdRef="ReadRangeX_1" Range="[Excel.Table(in_Config(&quot;OfferLetterTableName&quot;).ToString)]" SaveTo="[inDtOfferLetter]" />
+                    <ueab:ReadRangeX DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="444,174.66666666666666" sap2010:WorkflowViewState.IdRef="ReadRangeX_1" Range="[Excel.Table(in_Config(&quot;OfferLetterTableName&quot;).ToString)]" SaveTo="[dt_OfferLetter]" />
                   </Sequence>
                 </ActivityAction>
               </ueab:ExcelApplicationCard.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </ueab:ExcelApplicationCard>
           </Sequence>
         </ActivityAction>
@@ -278,30 +172,30 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ueab:ExcelProcessScopeX>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[inDtOfferLetter]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="636,544" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_OfferLetter]" DisplayName="For Each Row in Data Table | Offer Letter List" sap:VirtualizedContainerService.HintSize="530,554" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,427" sap2010:WorkflowViewState.IdRef="Sequence_20">
+          <Sequence DisplayName="Body | Offer Letter List" sap:VirtualizedContainerService.HintSize="496,434" sap2010:WorkflowViewState.IdRef="Sequence_20">
             <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="inQueueReference" />
+              <Variable x:TypeArguments="x:String" Name="queueReference" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign DisplayName="Assign | Queue Reference" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
               <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[inQueueReference]</OutArgument>
+                <OutArgument x:TypeArguments="x:String">[queueReference]</OutArgument>
               </Assign.To>
               <Assign.Value>
                 <InArgument x:TypeArguments="x:String">[CurrentRow.Item(2).ToString]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" FolderPath="DEV" sap:VirtualizedContainerService.HintSize="434,194" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="P004_SP002_090_NHC_OLC_Dispatcher_Queue" Reference="[inQueueReference]">
+            <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item | Offer Letter Creation Dispatcher" FolderPath="DEV" sap:VirtualizedContainerService.HintSize="434,198" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="P004_SP002_090_NHC_OLC_Dispatcher_Queue" Reference="[queueReference]">
               <ui:AddQueueItem.ItemInformation>
                 <InArgument x:TypeArguments="x:String" x:Key="Jr Number">[CurrentRow.item(2).ToString]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Job Title">[CurrentRow.item(3).ToString]</InArgument>
