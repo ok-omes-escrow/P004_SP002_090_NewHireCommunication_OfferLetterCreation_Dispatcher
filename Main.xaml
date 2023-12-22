@@ -132,6 +132,7 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <StateMachine InitialState="{x:Reference __ReferenceID3}" sap2010:Annotation.AnnotationText="New Hire Communication - Offer Letter Creation&#xA;Automation will assist HR team with managing the communications for the new hires. Once the Workday is updated with candidate information and recruiting manager sends out communication to the HR team, HR will initiate Background verification, send welcome email and onboarding info to the new joiners along with assisting the candidate with finishing the joining process.&#xA;This is the first part of the New Hire Communication&#xA;[Additional information (e.g., author, contact information and applications involved and required external setup)]" DisplayName="New Hire Communication - Offer Letter Creation - Dispatcher" sap:VirtualizedContainerService.HintSize="703,859" sap2010:WorkflowViewState.IdRef="StateMachine_1">
@@ -264,6 +265,7 @@
                                         <InArgument x:TypeArguments="x:String" x:Key="Salary">[CurrentRow.item(6).ToString]</InArgument>
                                         <InArgument x:TypeArguments="x:String" x:Key="Status">[CurrentRow.item(7).ToString]</InArgument>
                                         <InArgument x:TypeArguments="x:String" x:Key="BGCForm">[CurrentRow.item(8).ToString]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="TransferType">[CurrentRow.item(4).ToString]</InArgument>
                                       </ui:AddQueueItem.ItemInformation>
                                     </ui:AddQueueItem>
                                   </Sequence>
