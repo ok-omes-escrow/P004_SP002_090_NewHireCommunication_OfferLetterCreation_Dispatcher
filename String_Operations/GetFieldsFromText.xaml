@@ -8,11 +8,12 @@
     <x:Property Name="out_MiddleName" Type="OutArgument(x:String)" />
     <x:Property Name="out_LastName" Type="OutArgument(x:String)" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="out_ExtractedName" Type="OutArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>966,825.3333333333334</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1123.3333333333333,3203.3333333333335</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetFieldsFromText_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -100,7 +101,7 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetFieldsFromText" sap:VirtualizedContainerService.HintSize="512,629.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetFieldsFromText" sap:VirtualizedContainerService.HintSize="784.6666666666666,3138.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="extractedName" />
       <Variable x:TypeArguments="x:String" Name="beforeText" />
@@ -113,8 +114,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message | TBD" sap:VirtualizedContainerService.HintSize="450,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="[UiPath.Core.Activities.LogLevel.Error]" Message="[&quot;Check for Getting workflow infor logic&quot;]" />
-    <Sequence DisplayName="Sequence | Get Name from PDF Extract" sap:VirtualizedContainerService.HintSize="450,84.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <ui:LogMessage DisplayName="Log Message | TBD" sap:VirtualizedContainerService.HintSize="722.6666666666666,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="[UiPath.Core.Activities.LogLevel.Error]" Message="[&quot;Check for Getting workflow infor logic&quot;]" />
+    <Sequence DisplayName="Sequence | Get Name from PDF Extract" sap:VirtualizedContainerService.HintSize="722.6666666666666,84.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -146,14 +147,14 @@
         </Assign.Value>
       </Assign>
     </Sequence>
-    <Sequence DisplayName="Sequence | Validate and Split Name to First Middle Last" sap:VirtualizedContainerService.HintSize="450,84.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence DisplayName="Sequence | Validate and Split Name to First Middle Last" sap:VirtualizedContainerService.HintSize="722.6666666666666,2594" sap2010:WorkflowViewState.IdRef="Sequence_4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:IfElseIf DisplayName="Else If | Checking Extracted Name" sap:VirtualizedContainerService.HintSize="660.6666666666666,1062.6666666666667" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
+      <ui:IfElseIf DisplayName="Else If | Checking Extracted Name" sap:VirtualizedContainerService.HintSize="660.6666666666666,2483.3333333333335" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
         <ui:IfElseIf.ConditionBlocks>
           <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
             <ui:IfElseIfBlock BlockType="If" Condition="[extractedName.Length &lt; 5]">
@@ -183,13 +184,13 @@
             </ui:IfElseIfBlock>
             <ui:IfElseIfBlock BlockType="Else">
               <ui:IfElseIfBlock.Then>
-                <Sequence DisplayName="Body | Valid Name Processing" sap:VirtualizedContainerService.HintSize="532.6666666666666,290" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                <Sequence DisplayName="Body | Valid Name Processing" sap:VirtualizedContainerService.HintSize="609.3333333333334,1710.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_15">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign DisplayName="Assign | Split Names to List" sap:VirtualizedContainerService.HintSize="470.6666666666667,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_9">
+                  <Assign DisplayName="Assign | Split Names to List" sap:VirtualizedContainerService.HintSize="547.3333333333334,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_9">
                     <Assign.To>
                       <OutArgument x:TypeArguments="s:String[]">[splitNames]</OutArgument>
                     </Assign.To>
@@ -197,18 +198,26 @@
                       <InArgument x:TypeArguments="s:String[]">[extractedName.split(" "c)]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <ui:IfElseIf DisplayName="Else If | Assign First, Middle, Last Name | Based on SplitNames Length" sap:VirtualizedContainerService.HintSize="470.6666666666667,54" sap2010:WorkflowViewState.IdRef="IfElseIf_3">
+                  <ui:IfElseIf DisplayName="Else If | Assign First, Middle, Last Name | Based on SplitNames Length" sap:VirtualizedContainerService.HintSize="547.3333333333334,1474.6666666666667" sap2010:WorkflowViewState.IdRef="IfElseIf_3">
                     <ui:IfElseIf.ConditionBlocks>
                       <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
                         <ui:IfElseIfBlock BlockType="If" Condition="[splitNames.Length = 2]">
                           <ui:IfElseIfBlock.Then>
-                            <Sequence DisplayName="Body | Assign First and Last Name" sap:VirtualizedContainerService.HintSize="496,446.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                            <Sequence DisplayName="Body | Assign First and Last Name" sap:VirtualizedContainerService.HintSize="496,572" sap2010:WorkflowViewState.IdRef="Sequence_16">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
+                              <Assign DisplayName="Assign | Full Name | First Name Last Name" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_26">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[out_ExtractedName]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[extractedName.Trim]</InArgument>
+                                </Assign.Value>
+                              </Assign>
                               <Assign DisplayName="Assign | First Name | Length 2" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_19">
                                 <Assign.To>
                                   <OutArgument x:TypeArguments="x:String">[out_FirstName]</OutArgument>
@@ -238,7 +247,7 @@
                         </ui:IfElseIfBlock>
                         <ui:IfElseIfBlock BlockType="ElseIf" Condition="[splitNames.Length &gt; 2 And splitNames.Length &lt; 5]">
                           <ui:IfElseIfBlock.Then>
-                            <Sequence DisplayName="Body | Assign First, Middle, Last Name" sap:VirtualizedContainerService.HintSize="496,384" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                            <Sequence DisplayName="Body | Assign First, Middle, Last Name" sap:VirtualizedContainerService.HintSize="496,572" sap2010:WorkflowViewState.IdRef="Sequence_17">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -269,6 +278,14 @@
                                   <InArgument x:TypeArguments="x:String">[splitNames(2).ToString]</InArgument>
                                 </Assign.Value>
                               </Assign>
+                              <Assign DisplayName="Assign | Full Name | First Middle Last Name" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_27">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[out_ExtractedName]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[string.Concat(out_FirstName," ",out_MiddleName," ",out_LastName)]</InArgument>
+                                </Assign.Value>
+                              </Assign>
                             </Sequence>
                           </ui:IfElseIfBlock.Then>
                         </ui:IfElseIfBlock>
@@ -276,7 +293,7 @@
                     </ui:IfElseIf.ConditionBlocks>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
@@ -288,7 +305,7 @@
         </ui:IfElseIf.ConditionBlocks>
       </ui:IfElseIf>
     </Sequence>
-    <Sequence DisplayName="Sequence | Validate and Get Email from PDF Extract" sap:VirtualizedContainerService.HintSize="450,84.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Sequence | Validate and Get Email from PDF Extract" sap:VirtualizedContainerService.HintSize="722.6666666666666,84.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>

@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1514,827</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1123.3333333333333,852</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetPDFContent_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -83,22 +83,19 @@
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetPDFContent" sap:VirtualizedContainerService.HintSize="552,725" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetPDFContent" sap:VirtualizedContainerService.HintSize="552,742" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="490,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process: GetPDFContent&quot;]" />
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="490,433" sap2010:WorkflowViewState.IdRef="TryCatch_1">
-      <TryCatch.Variables>
-        <Variable x:TypeArguments="x:String" Name="exceptionMessage" />
-      </TryCatch.Variables>
+    <ui:LogMessage DisplayName="Log Message | Get PDF Content | Start" sap:VirtualizedContainerService.HintSize="490,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Workflow: Get PDF Content&quot;]" />
+    <TryCatch DisplayName="Try Catch | Get PDF Content" sap:VirtualizedContainerService.HintSize="490,446.6666666666667" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Read PDF Text | Background Verification Form" FileName="[in_PDFPath]" sap:VirtualizedContainerService.HintSize="322,82" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" Range="All" Text="[out_PDFText]" />
+        <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Read PDF Text | Background Verification Form" FileName="[in_PDFPath]" sap:VirtualizedContainerService.HintSize="322,84" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" Range="All" Text="[out_PDFText]" />
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="456,270" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="456,273.3333333333333" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -109,17 +106,20 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence sap:VirtualizedContainerService.HintSize="450,201" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence sap:VirtualizedContainerService.HintSize="450,202.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_2">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Throw Exception="[new Exception(exception.Message.ToString)]" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
+              <Throw DisplayName="Throw | Get PDF Content" Exception="[new Exception(exception.Message.ToString)]" sap:VirtualizedContainerService.HintSize="388,92" sap2010:WorkflowViewState.IdRef="Throw_1" />
             </Sequence>
           </ActivityAction>
         </Catch>
       </TryCatch.Catches>
+      <TryCatch.Finally>
+        <ui:LogMessage DisplayName="Log Message | Get PDF Content | End" sap:VirtualizedContainerService.HintSize="334,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Finished Workflow: Get PDF Content&quot;]" />
+      </TryCatch.Finally>
     </TryCatch>
   </Sequence>
 </Activity>
