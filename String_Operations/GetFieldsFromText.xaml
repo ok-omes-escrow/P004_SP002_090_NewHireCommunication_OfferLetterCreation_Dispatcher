@@ -13,7 +13,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1123.3333333333333,3203.3333333333335</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1124,4603.333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetFieldsFromText_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -101,13 +101,13 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetFieldsFromText" sap:VirtualizedContainerService.HintSize="784.6666666666666,3138.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetFieldsFromText" sap:VirtualizedContainerService.HintSize="784.6666666666666,4538.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="extractedName" />
-      <Variable x:TypeArguments="x:String" Name="beforeText" />
-      <Variable x:TypeArguments="x:String" Name="afterText" />
-      <Variable x:TypeArguments="x:String" Name="extractedEmail" />
-      <Variable x:TypeArguments="s:String[]" Name="splitNames" />
+      <Variable x:TypeArguments="x:String" Name="strExtractedName" />
+      <Variable x:TypeArguments="x:String" Name="strBeforeText" />
+      <Variable x:TypeArguments="x:String" Name="strAfterText" />
+      <Variable x:TypeArguments="x:String" Name="strExtractedEmail" />
+      <Variable x:TypeArguments="s:String[]" Name="strarrSplitNames" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -115,16 +115,16 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message | TBD" sap:VirtualizedContainerService.HintSize="722.6666666666666,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="[UiPath.Core.Activities.LogLevel.Error]" Message="[&quot;Check for Getting workflow infor logic&quot;]" />
-    <Sequence DisplayName="Sequence | Get Name from PDF Extract" sap:VirtualizedContainerService.HintSize="722.6666666666666,84.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Sequence | Get Name from PDF Extract" sap:VirtualizedContainerService.HintSize="722.6666666666666,446.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Assign DisplayName="Assign | Before Text Identifier | Name" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[beforeText]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[strBeforeText]</OutArgument>
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="x:String">[in_NameLogic.Split("|"c)(0)]</InArgument>
@@ -132,7 +132,7 @@
       </Assign>
       <Assign DisplayName="Assign | After Text Identifier | Name" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[afterText]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[strAfterText]</OutArgument>
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="x:String">[in_NameLogic.Split("|"c)(1)]</InArgument>
@@ -140,10 +140,10 @@
       </Assign>
       <Assign DisplayName="Assign | Extract Name" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_3">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[extractedName]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[strExtractedName]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[in_ExtractedText.Substring(instr(in_ExtractedText,beforeText)+beforeText.Length,instr(in_ExtractedText,afterText)-(instr(in_ExtractedText,beforeText)+beforeText.Length+1)).Trim]</InArgument>
+          <InArgument x:TypeArguments="x:String">[in_ExtractedText.Substring(instr(in_ExtractedText,strBeforeText)+strBeforeText.Length,instr(in_ExtractedText,strAfterText)-(instr(in_ExtractedText,strBeforeText)+strBeforeText.Length+1)).Trim]</InArgument>
         </Assign.Value>
       </Assign>
     </Sequence>
@@ -157,7 +157,7 @@
       <ui:IfElseIf DisplayName="Else If | Checking Extracted Name" sap:VirtualizedContainerService.HintSize="660.6666666666666,2483.3333333333335" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
         <ui:IfElseIf.ConditionBlocks>
           <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
-            <ui:IfElseIfBlock BlockType="If" Condition="[extractedName.Length &lt; 5]">
+            <ui:IfElseIfBlock BlockType="If" Condition="[strExtractedName.Length &lt; 5]">
               <ui:IfElseIfBlock.Then>
                 <Sequence DisplayName="Body | Extracted String Length Check" sap:VirtualizedContainerService.HintSize="450,202.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_13">
                   <sap:WorkflowViewStateService.ViewState>
@@ -170,7 +170,7 @@
                 </Sequence>
               </ui:IfElseIfBlock.Then>
             </ui:IfElseIfBlock>
-            <ui:IfElseIfBlock BlockType="ElseIf" Condition="[InStr(extractedName,environment.NewLine) &gt; 0]">
+            <ui:IfElseIfBlock BlockType="ElseIf" Condition="[InStr(strExtractedName,environment.NewLine) &gt; 0]">
               <ui:IfElseIfBlock.Then>
                 <Sequence DisplayName="Body | New Line Check" sap:VirtualizedContainerService.HintSize="450,202.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_14">
                   <sap:WorkflowViewStateService.ViewState>
@@ -192,16 +192,16 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <Assign DisplayName="Assign | Split Names to List" sap:VirtualizedContainerService.HintSize="547.3333333333334,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_9">
                     <Assign.To>
-                      <OutArgument x:TypeArguments="s:String[]">[splitNames]</OutArgument>
+                      <OutArgument x:TypeArguments="s:String[]">[strarrSplitNames]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="s:String[]">[extractedName.split(" "c)]</InArgument>
+                      <InArgument x:TypeArguments="s:String[]">[strExtractedName.split(" "c)]</InArgument>
                     </Assign.Value>
                   </Assign>
                   <ui:IfElseIf DisplayName="Else If | Assign First, Middle, Last Name | Based on SplitNames Length" sap:VirtualizedContainerService.HintSize="547.3333333333334,1474.6666666666667" sap2010:WorkflowViewState.IdRef="IfElseIf_3">
                     <ui:IfElseIf.ConditionBlocks>
                       <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
-                        <ui:IfElseIfBlock BlockType="If" Condition="[splitNames.Length = 2]">
+                        <ui:IfElseIfBlock BlockType="If" Condition="[strarrSplitNames.Length = 2]">
                           <ui:IfElseIfBlock.Then>
                             <Sequence DisplayName="Body | Assign First and Last Name" sap:VirtualizedContainerService.HintSize="496,572" sap2010:WorkflowViewState.IdRef="Sequence_16">
                               <sap:WorkflowViewStateService.ViewState>
@@ -215,7 +215,7 @@
                                   <OutArgument x:TypeArguments="x:String">[out_ExtractedName]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">[extractedName.Trim]</InArgument>
+                                  <InArgument x:TypeArguments="x:String">[strExtractedName.Trim]</InArgument>
                                 </Assign.Value>
                               </Assign>
                               <Assign DisplayName="Assign | First Name | Length 2" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_19">
@@ -223,7 +223,7 @@
                                   <OutArgument x:TypeArguments="x:String">[out_FirstName]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">[splitNames(0).ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String">[strarrSplitNames(0).ToString]</InArgument>
                                 </Assign.Value>
                               </Assign>
                               <Assign DisplayName="Assign | Middle Name to Blank | Length 2" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_20">
@@ -239,13 +239,13 @@
                                   <OutArgument x:TypeArguments="x:String">[out_LastName]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">[splitNames(1).ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String">[strarrSplitNames(1).ToString]</InArgument>
                                 </Assign.Value>
                               </Assign>
                             </Sequence>
                           </ui:IfElseIfBlock.Then>
                         </ui:IfElseIfBlock>
-                        <ui:IfElseIfBlock BlockType="ElseIf" Condition="[splitNames.Length &gt; 2 And splitNames.Length &lt; 5]">
+                        <ui:IfElseIfBlock BlockType="ElseIf" Condition="[strarrSplitNames.Length &gt; 2 And strarrSplitNames.Length &lt; 5]">
                           <ui:IfElseIfBlock.Then>
                             <Sequence DisplayName="Body | Assign First, Middle, Last Name" sap:VirtualizedContainerService.HintSize="496,572" sap2010:WorkflowViewState.IdRef="Sequence_17">
                               <sap:WorkflowViewStateService.ViewState>
@@ -259,7 +259,7 @@
                                   <OutArgument x:TypeArguments="x:String">[out_FirstName]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">[splitNames(0).ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String">[strarrSplitNames(0).ToString]</InArgument>
                                 </Assign.Value>
                               </Assign>
                               <Assign DisplayName="Assign | Middle Name | Length 3 to 4" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_23">
@@ -267,7 +267,7 @@
                                   <OutArgument x:TypeArguments="x:String">[out_MiddleName]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">[splitNames(1).ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String">[strarrSplitNames(1).ToString]</InArgument>
                                 </Assign.Value>
                               </Assign>
                               <Assign DisplayName="Assign | Last Name | Length 3 to 4" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_24">
@@ -275,7 +275,7 @@
                                   <OutArgument x:TypeArguments="x:String">[out_LastName]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">[splitNames(2).ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String">[strarrSplitNames(2).ToString]</InArgument>
                                 </Assign.Value>
                               </Assign>
                               <Assign DisplayName="Assign | Full Name | First Middle Last Name" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_27">
@@ -305,16 +305,16 @@
         </ui:IfElseIf.ConditionBlocks>
       </ui:IfElseIf>
     </Sequence>
-    <Sequence DisplayName="Sequence | Validate and Get Email from PDF Extract" sap:VirtualizedContainerService.HintSize="722.6666666666666,84.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Sequence | Validate and Get Email from PDF Extract" sap:VirtualizedContainerService.HintSize="722.6666666666666,1122.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Assign DisplayName="Assign | Before Text Identifier | Email" sap:VirtualizedContainerService.HintSize="510,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_5">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[beforeText]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[strBeforeText]</OutArgument>
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="x:String">[in_EmailLogic.Split("|"c)(0)]</InArgument>
@@ -322,7 +322,7 @@
       </Assign>
       <Assign DisplayName="Assign | After Text Identifier | Email" sap:VirtualizedContainerService.HintSize="510,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_6">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[afterText]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[strAfterText]</OutArgument>
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="x:String">[in_EmailLogic.Split("|"c)(1)]</InArgument>
@@ -330,14 +330,14 @@
       </Assign>
       <Assign DisplayName="Assign | Extracted Email " sap:VirtualizedContainerService.HintSize="510,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_25">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[extractedEmail]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[strExtractedEmail]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[in_ExtractedText.Substring(instr(in_ExtractedText,beforeText)+beforeText.Length,instr(in_ExtractedText,afterText)-(instr(in_ExtractedText,beforeText)+beforeText.Length+1)).Trim]</InArgument>
+          <InArgument x:TypeArguments="x:String">[in_ExtractedText.Substring(instr(in_ExtractedText,strBeforeText)+strBeforeText.Length,instr(in_ExtractedText,strAfterText)-(instr(in_ExtractedText,strBeforeText)+strBeforeText.Length+1)).Trim]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:Matches BuilderPattern="((?&gt;[a-zA-Z\d!#$%&amp;'*+\-\/=?^_`{|}~]+\x20*|&quot;((?=[\x01-\x7f])[^&quot;\\]|\\[\x01-\x7f])*&quot;\x20*)*(?&lt;angle&gt;&lt;))?((?!\.)(?&gt;\.?[a-zA-Z\d!#$%&amp;'*+\-\/=?^_`{|}~]+)+|&quot;((?=[\x01-\x7f])[^&quot;\\]|\\[\x01-\x7f])*&quot;)@(((?!-)[a-zA-Z\d\-]+(?&lt;!-)\.)+[a-zA-Z]{2,}|\[(((?(?&lt;!\[)\.)(25[0-5]|2[0-4]\d|[01]?\d?\d)){4}|[a-zA-Z\d\-]*[a-zA-Z\d]:((?=[\x01-\x7f])[^\\\[\]]|\\[\x01-\x7f])+)\])(?(angle)&gt;)" DisplayName="Find Matching Patterns | Checking for Email Format Match" FirstMatch="[extractedEmail]" sap:VirtualizedContainerService.HintSize="510,60" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[extractedEmail]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;EMAIL&quot;,&quot;OperationName&quot;:&quot;Email&quot;,&quot;OperationValue&quot;:&quot;((?&gt;[a-zA-Z\\d!#$%&amp;'*+\\-\\\/=?^_`{|}~]+\\x20*|\&quot;((?=[\\x01-\\x7f])[^\&quot;\\\\]|\\\\[\\x01-\\x7f])*\&quot;\\x20*)*(?&lt;angle&gt;&lt;))?((?!\\.)(?&gt;\\.?[a-zA-Z\\d!#$%&amp;'*+\\-\\\/=?^_`{|}~]+)+|\&quot;((?=[\\x01-\\x7f])[^\&quot;\\\\]|\\\\[\\x01-\\x7f])*\&quot;)@(((?!-)[a-zA-Z\\d\\-]+(?&lt;!-)\\.)+[a-zA-Z]{2,}|\\[(((?(?&lt;!\\[)\\.)(25[0-5]|2[0-4]\\d|[01]?\\d?\\d)){4}|[a-zA-Z\\d\\-]*[a-zA-Z\\d]:((?=[\\x01-\\x7f])[^\\\\\\[\\]]|\\\\[\\x01-\\x7f])+)\\])(?(angle)&gt;)&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="((?&gt;[a-zA-Z\d!#$%&amp;'*+\-\/=?^_`{|}~]+\x20*|&quot;((?=[\x01-\x7f])[^&quot;\\]|\\[\x01-\x7f])*&quot;\x20*)*(?&lt;angle&gt;&lt;))?((?!\.)(?&gt;\.?[a-zA-Z\d!#$%&amp;'*+\-\/=?^_`{|}~]+)+|&quot;((?=[\x01-\x7f])[^&quot;\\]|\\[\x01-\x7f])*&quot;)@(((?!-)[a-zA-Z\d\-]+(?&lt;!-)\.)+[a-zA-Z]{2,}|\[(((?(?&lt;!\[)\.)(25[0-5]|2[0-4]\d|[01]?\d?\d)){4}|[a-zA-Z\d\-]*[a-zA-Z\d]:((?=[\x01-\x7f])[^\\\[\]]|\\[\x01-\x7f])+)\])(?(angle)&gt;)" RegexOption="IgnoreCase, Compiled" />
-      <If Condition="[IsNothing(extractedEmail)]" DisplayName="If | Validating Extracted Email" sap:VirtualizedContainerService.HintSize="510,536" sap2010:WorkflowViewState.IdRef="If_2">
+      <ui:Matches BuilderPattern="((?&gt;[a-zA-Z\d!#$%&amp;'*+\-\/=?^_`{|}~]+\x20*|&quot;((?=[\x01-\x7f])[^&quot;\\]|\\[\x01-\x7f])*&quot;\x20*)*(?&lt;angle&gt;&lt;))?((?!\.)(?&gt;\.?[a-zA-Z\d!#$%&amp;'*+\-\/=?^_`{|}~]+)+|&quot;((?=[\x01-\x7f])[^&quot;\\]|\\[\x01-\x7f])*&quot;)@(((?!-)[a-zA-Z\d\-]+(?&lt;!-)\.)+[a-zA-Z]{2,}|\[(((?(?&lt;!\[)\.)(25[0-5]|2[0-4]\d|[01]?\d?\d)){4}|[a-zA-Z\d\-]*[a-zA-Z\d]:((?=[\x01-\x7f])[^\\\[\]]|\\[\x01-\x7f])+)\])(?(angle)&gt;)" DisplayName="Find Matching Patterns | Checking for Email Format Match" FirstMatch="[strExtractedEmail]" sap:VirtualizedContainerService.HintSize="510,60" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[strExtractedEmail]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;EMAIL&quot;,&quot;OperationName&quot;:&quot;Email&quot;,&quot;OperationValue&quot;:&quot;((?&gt;[a-zA-Z\\d!#$%&amp;'*+\\-\\\/=?^_`{|}~]+\\x20*|\&quot;((?=[\\x01-\\x7f])[^\&quot;\\\\]|\\\\[\\x01-\\x7f])*\&quot;\\x20*)*(?&lt;angle&gt;&lt;))?((?!\\.)(?&gt;\\.?[a-zA-Z\\d!#$%&amp;'*+\\-\\\/=?^_`{|}~]+)+|\&quot;((?=[\\x01-\\x7f])[^\&quot;\\\\]|\\\\[\\x01-\\x7f])*\&quot;)@(((?!-)[a-zA-Z\\d\\-]+(?&lt;!-)\\.)+[a-zA-Z]{2,}|\\[(((?(?&lt;!\\[)\\.)(25[0-5]|2[0-4]\\d|[01]?\\d?\\d)){4}|[a-zA-Z\\d\\-]*[a-zA-Z\\d]:((?=[\\x01-\\x7f])[^\\\\\\[\\]]|\\\\[\\x01-\\x7f])+)\\])(?(angle)&gt;)&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="((?&gt;[a-zA-Z\d!#$%&amp;'*+\-\/=?^_`{|}~]+\x20*|&quot;((?=[\x01-\x7f])[^&quot;\\]|\\[\x01-\x7f])*&quot;\x20*)*(?&lt;angle&gt;&lt;))?((?!\.)(?&gt;\.?[a-zA-Z\d!#$%&amp;'*+\-\/=?^_`{|}~]+)+|&quot;((?=[\x01-\x7f])[^&quot;\\]|\\[\x01-\x7f])*&quot;)@(((?!-)[a-zA-Z\d\-]+(?&lt;!-)\.)+[a-zA-Z]{2,}|\[(((?(?&lt;!\[)\.)(25[0-5]|2[0-4]\d|[01]?\d?\d)){4}|[a-zA-Z\d\-]*[a-zA-Z\d]:((?=[\x01-\x7f])[^\\\[\]]|\\[\x01-\x7f])+)\])(?(angle)&gt;)" RegexOption="IgnoreCase, Compiled" />
+      <If Condition="[IsNothing(strExtractedEmail)]" DisplayName="If | Validating Extracted Email" sap:VirtualizedContainerService.HintSize="510,536" sap2010:WorkflowViewState.IdRef="If_2">
         <If.Then>
           <Sequence sap:VirtualizedContainerService.HintSize="376,179.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_18">
             <sap:WorkflowViewStateService.ViewState>
@@ -360,7 +360,7 @@
                 <OutArgument x:TypeArguments="x:String">[out_ExtractedEmail]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[extractedEmail]</InArgument>
+                <InArgument x:TypeArguments="x:String">[strExtractedEmail]</InArgument>
               </Assign.Value>
             </Assign>
           </Sequence>
