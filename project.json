@@ -3,8 +3,7 @@
   "description": "Robotic Enterprise Framework",
   "main": "Main.xaml",
   "dependencies": {
-    "LIB_GraphAPI": "[1.0.1-alpha.4]",
-    "LIB_O365_Sharepoint_00.00": "[1.0.6]",
+    "LIB_GraphAPI": "[1.0.1-alpha.5]",
     "O365MailActivities_00.00.Library.Runtime": "[1.0.1]",
     "System.Text.RegularExpressions": "[4.3.1]",
     "UiPath.Excel.Activities": "[2.20.2]",
