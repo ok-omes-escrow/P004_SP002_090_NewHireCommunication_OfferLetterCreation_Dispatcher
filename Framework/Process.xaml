@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1023,1041</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1381,1040</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="50">
@@ -89,9 +89,12 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="450,976" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="450,975" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strExtractedText" />
       <Variable x:TypeArguments="x:String" Name="strExtractedName" />
@@ -99,6 +102,8 @@
       <Variable x:TypeArguments="x:String" Name="strExtractedFirstName" />
       <Variable x:TypeArguments="x:String" Name="strExtractedMiddleName" />
       <Variable x:TypeArguments="x:String" Name="strExtractedLastName" />
+      <Variable x:TypeArguments="x:String" Name="strExtractedSSN" />
+      <Variable x:TypeArguments="x:String" Name="strExtractedDOB" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -109,29 +114,46 @@
     <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="388,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetPDFContent.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="PDF_Operations\GetPDFContent.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_PDFText">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedText" />
-        </OutArgument>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
           <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
         </InArgument>
         <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">
           <VisualBasicValue x:TypeArguments="ui:QueueItem" ExpressionText="in_TransactionItem" />
         </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strPDFText">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedText" />
+        </OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetFieldsFromText.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="String_Operations\GetFieldsFromText.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_ExtractedText">[strExtractedText]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_NameLogic">[in_Config("NameExtractor").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_EmailLogic">[in_Config("EmailExtractor").ToString]</InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_ExtractedEmail">[strExtractedEmail]</OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_FirstName">[strExtractedFirstName]</OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_MiddleName">[strExtractedMiddleName]</OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_LastName">[strExtractedLastName]</OutArgument>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_ExtractedName">[strExtractedName]</OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_SsnDob">[in_Config("SsnDobExtractor").ToString]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strExtractedText">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strExtractedText" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strDateOfBirth">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedDOB" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strExtractedEmail">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedEmail" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strExtractedName">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedName" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strFirstName">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedFirstName" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strLastName">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedLastName" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strMiddleName">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedMiddleName" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strSSN">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedSSN" />
+        </OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item | Offer Letter Performer Queue" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="388,194" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_Config(&quot;OLC_PerformerQueue&quot;).ToString]" Reference="[in_TransactionItem.Reference.ToString]">
@@ -148,8 +170,11 @@
         <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="DateOfHiring" />
         <InArgument x:TypeArguments="x:String" x:Key="Status" />
+        <InArgument x:TypeArguments="s:DateTime" x:Key="CreationDate">[Now]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="SSN">[strExtractedSSN]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="DateOfBirth">[strExtractedDOB]</InArgument>
       </ui:AddQueueItem.ItemInformation>
     </ui:AddQueueItem>
-    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  Invoke steps of the process" />
+    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="388,56" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  Invoke steps of the process" />
   </Sequence>
 </Activity>

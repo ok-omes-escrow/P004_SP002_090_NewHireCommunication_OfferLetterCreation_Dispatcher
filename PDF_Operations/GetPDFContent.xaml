@@ -1,13 +1,13 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="GetPDFContent" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:l="clr-namespace:LIB_GraphAPI;assembly=LIB_GraphAPI" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="Extracted raw text from PDF File" Name="out_PDFText" Type="OutArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Config Data which includes sharepoint settings" Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property sap2010:Annotation.AnnotationText="Current Transaction Item" Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property sap2010:Annotation.AnnotationText="Extracted raw text from PDF File" Name="out_strPDFText" Type="OutArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1381,2248</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1023,1254</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetPDFContent_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -60,6 +60,8 @@
       <x:String>UiPath.MicrosoftOffice365.Activities.Files.Contracts</x:String>
       <x:String>UiPath.MicrosoftOffice365.Activities.Files</x:String>
       <x:String>UiPath.MicrosoftOffice365.Activities.Files.Enums</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.SharePoint</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -123,19 +125,20 @@
       <AssemblyReference>netstandard</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetPDFContent" sap:VirtualizedContainerService.HintSize="572,2183" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetPDFContent" sap:VirtualizedContainerService.HintSize="560,1189" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strDownloadedFilePath" />
+      <Variable x:TypeArguments="x:Boolean" Name="boolBGVFileDownloaded" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message | Get PDF Content | Start" sap:VirtualizedContainerService.HintSize="510,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Workflow: Get PDF Content&quot;]" />
-    <TryCatch DisplayName="Try Catch | Get PDF Content" sap:VirtualizedContainerService.HintSize="510,1891" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <ui:LogMessage DisplayName="Log Message | Get PDF Content | Start" sap:VirtualizedContainerService.HintSize="498,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Workflow: Get PDF Content&quot;]" />
+    <TryCatch DisplayName="Try Catch | Get PDF Content" sap:VirtualizedContainerService.HintSize="498,897" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <Sequence DisplayName="Sequence | Download file from Sharepoint" sap:VirtualizedContainerService.HintSize="472,1641" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="Sequence | Download file from Sharepoint" sap:VirtualizedContainerService.HintSize="460,647" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Boolean" Name="boolBGVFileFound" />
             <Variable x:TypeArguments="x:Int32" Name="intFileCount" />
@@ -143,28 +146,32 @@
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <l:Files_or_Folders_Exist DisplayName="Files or Folders Exist | BGV File" sap:VirtualizedContainerService.HintSize="410,498" sap2010:WorkflowViewState.IdRef="Files_or_Folders_Exist_2" in_strApplicationIDAssetName="[in_Config(&quot;O365_AppID&quot;).ToString]" in_strApplicationSecretAssetName="[in_Config(&quot;O365_AppSecret&quot;).ToString]" in_strOrchestratorFolderPath="[in_Config(&quot;BotEnvironment&quot;).ToString]" in_strSharepointFileFolderToSearch="[in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]" in_strSharepointSubfolder="[in_Config(&quot;SharepointBGVFolder&quot;).ToString]" in_strSharepointURL="[in_Config(&quot;SharepointSiteURL&quot;).ToString]" in_strTenantIDAssetName="[in_Config(&quot;O365_TenantID&quot;).ToString]" out_boolResultFileFolderFound="[boolBGVFileFound]" out_intResultCount="[intFileCount]">
+          <l:Files_or_Folders_Exist DisplayName="Files or Folders Exist | BGV File" sap:VirtualizedContainerService.HintSize="398,52" sap2010:WorkflowViewState.IdRef="Files_or_Folders_Exist_2" in_strApplicationIDAssetName="[in_Config(&quot;O365_AppID&quot;).ToString]" in_strApplicationSecretAssetName="[in_Config(&quot;O365_AppSecret&quot;).ToString]" in_strOrchestratorFolderPath="[in_Config(&quot;BotEnvironment&quot;).ToString]" in_strSharepointFileFolderToSearch="[in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString]" in_strSharepointSubfolder="[in_Config(&quot;SharepointBGVFolder&quot;).ToString]" in_strSharepointURL="[in_Config(&quot;SharepointSiteURL&quot;).ToString]" in_strTenantIDAssetName="[in_Config(&quot;O365_TenantID&quot;).ToString]" out_boolResultFileFolderFound="[boolBGVFileFound]" out_intResultCount="[intFileCount]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </l:Files_or_Folders_Exist>
-          <If Condition="[boolBGVFileFound]" DisplayName="If | BGV File Found" sap:VirtualizedContainerService.HintSize="410,870" sap2010:WorkflowViewState.IdRef="If_1">
+          <If Condition="[boolBGVFileFound]" DisplayName="If | BGV File Found" sap:VirtualizedContainerService.HintSize="398,52" sap2010:WorkflowViewState.IdRef="If_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
             <If.Then>
               <Sequence sap:VirtualizedContainerService.HintSize="376,688" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                <Sequence.Variables>
-                  <Variable x:TypeArguments="x:Boolean" Name="boolBGVFileDownloaded" />
-                </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <l:Download_File in_strParentDriveItemOptional="{x:Null}" DisplayName="Download File | BGV File" sap:VirtualizedContainerService.HintSize="334,600" sap2010:WorkflowViewState.IdRef="Download_File_1" in_strApplicationIDAssetName="[in_Config(&quot;O365_AppID&quot;).ToString]" in_strApplicationSecretAsset="[in_Config(&quot;O365_AppSecret&quot;).ToString]" in_strDelay="00:01:00" in_strLocalFilePath="[String.Concat(in_Config(&quot;RuntimeLocalFolderPath&quot;).ToString,&#xD;&#xA;&quot;/&quot;,&#xD;&#xA;in_Config(&quot;logF_BusinessProcessName&quot;).ToString,&#xD;&#xA;&quot;/&quot;,&#xD;&#xA;in_Config(&quot;BGVLocalFolderPath&quot;).ToString)]" in_strOrchestratorFolderPath="[in_Config(&quot;BotEnvironment&quot;).ToString]" in_strSharepointURL="[in_Config(&quot;SharepointSiteURL&quot;).ToString]" in_strSpParentFolderPath="[string.Concat(in_Config(&quot;SharepointBGVFolder&quot;).ToString,&quot;/&quot;,in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString,&quot;.pdf&quot;).Replace(&quot;\&quot;,&quot;/&quot;)]" in_strTenantIDAssetName="[in_Config(&quot;O365_TenantID&quot;).ToString]" out_boolFileDownloaded="[boolBGVFileDownloaded]" out_strDownloadedFilePath="[strDownloadedFilePath]">
+                <l:Download_File in_strParentDriveItemOptional="{x:Null}" DisplayName="Download File | BGV File" sap:VirtualizedContainerService.HintSize="334,600" sap2010:WorkflowViewState.IdRef="Download_File_1" in_strApplicationIDAssetName="[in_Config(&quot;O365_AppID&quot;).ToString]" in_strApplicationSecretAsset="[in_Config(&quot;O365_AppSecret&quot;).ToString]" in_strDelay="00:01:00" in_strLocalFilePath="[String.Concat(in_Config(&quot;RuntimeLocalFolderPath&quot;).ToString,&#xA;&quot;/&quot;,&#xA;in_Config(&quot;logF_BusinessProcessName&quot;).ToString,&#xA;&quot;/&quot;,&#xA;in_Config(&quot;BGVLocalFolderPath&quot;).ToString)]" in_strOrchestratorFolderPath="[in_Config(&quot;BotEnvironment&quot;).ToString]" in_strSharepointURL="[in_Config(&quot;SharepointSiteURL&quot;).ToString]" in_strSpParentFolderPath="[string.Concat(in_Config(&quot;SharepointBGVFolder&quot;).ToString,&quot;/&quot;,in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString,&quot;.pdf&quot;).Replace(&quot;\&quot;,&quot;/&quot;)]" in_strTenantIDAssetName="[in_Config(&quot;O365_TenantID&quot;).ToString]" out_boolFileDownloaded="[boolBGVFileDownloaded]" out_strDownloadedFilePath="[strDownloadedFilePath]">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -185,11 +192,25 @@
               </Sequence>
             </If.Else>
           </If>
-          <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Read PDF Text | Background Verification Form" FileName="[strDownloadedFilePath]" sap:VirtualizedContainerService.HintSize="410,82" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" Range="All" Text="[out_PDFText]" />
+          <If Condition="[boolBGVFileDownloaded]" DisplayName="If | BGV File Downloaded" sap:VirtualizedContainerService.HintSize="398,352" sap2010:WorkflowViewState.IdRef="If_2">
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="364,170" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Read PDF Text | Background Verification Form" FileName="[strDownloadedFilePath]" sap:VirtualizedContainerService.HintSize="322,82" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" Range="All" Text="[out_strPDFText]" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8" />
+            </If.Else>
+          </If>
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="476,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="464,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -210,7 +231,7 @@
             </Sequence>
           </ActivityAction>
         </Catch>
-        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="476,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="464,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -226,7 +247,7 @@
         </Catch>
       </TryCatch.Catches>
       <TryCatch.Finally>
-        <ui:LogMessage DisplayName="Log Message | Get PDF Content | End" sap:VirtualizedContainerService.HintSize="334,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Finished Workflow: Get PDF Content&quot;]" />
+        <ui:LogMessage DisplayName="Log Message | Get PDF Content | End" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Finished Workflow: Get PDF Content&quot;]" />
       </TryCatch.Finally>
     </TryCatch>
   </Sequence>

@@ -4,7 +4,6 @@
   "main": "Main.xaml",
   "dependencies": {
     "LIB_GraphAPI": "[1.0.1-alpha.5]",
-    "O365MailActivities_00.00.Library.Runtime": "[1.0.1]",
     "System.Text.RegularExpressions": "[4.3.1]",
     "UiPath.Excel.Activities": "[2.20.2]",
     "UiPath.PDF.Activities": "[3.16.0]",
