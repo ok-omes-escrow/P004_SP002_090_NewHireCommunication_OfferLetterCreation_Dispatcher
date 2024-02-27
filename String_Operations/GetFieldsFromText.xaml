@@ -9,11 +9,12 @@
     <x:Property sap2010:Annotation.AnnotationText="Mandatory - Extracted Last Name" Name="out_strLastName" Type="OutArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Optional - Extracted Middle Name" Name="out_strMiddleName" Type="OutArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Optional - Extracted SSN" Name="out_strSSN" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1023,2593</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>871.3333333333334,2628.6666666666665</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetFieldsFromText_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -102,7 +103,7 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetFieldsFromText" sap:VirtualizedContainerService.HintSize="658,2528" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetFieldsFromText" sap:VirtualizedContainerService.HintSize="658.6666666666666,2564" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strExtractedName" />
       <Variable x:TypeArguments="x:String" Name="strBeforeText" />
@@ -116,7 +117,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message | Extract Text" sap:VirtualizedContainerService.HintSize="596,141" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Starting to extract required data from BGV Text&quot;]">
+    <ui:LogMessage DisplayName="Log Message | Extract Text" sap:VirtualizedContainerService.HintSize="596.6666666666666,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Starting to extract required data from BGV Text&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -124,7 +125,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch DisplayName="Try Catch | Get Fields From Extracted" sap:VirtualizedContainerService.HintSize="596,2236" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch | Get Fields From Extracted" sap:VirtualizedContainerService.HintSize="596.6666666666666,2268.6666666666665" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -132,20 +133,20 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="558,1986" sap2010:WorkflowViewState.IdRef="Sequence_21">
+        <Sequence sap:VirtualizedContainerService.HintSize="558,2006" sap2010:WorkflowViewState.IdRef="Sequence_21">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Sequence DisplayName="Sequence | Get Name from PDF Extract" sap:VirtualizedContainerService.HintSize="496,437" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Sequence | Get Name from PDF Extract" sap:VirtualizedContainerService.HintSize="496,443.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign DisplayName="Assign | Before Text Identifier | Name" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign DisplayName="Assign | Before Text Identifier | Name" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[strBeforeText]</OutArgument>
               </Assign.To>
@@ -153,7 +154,7 @@
                 <InArgument x:TypeArguments="x:String">[in_Config("NameExtractor").ToString.Split("|"c)(0)]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign DisplayName="Assign | After Text Identifier | Name" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign DisplayName="Assign | After Text Identifier | Name" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[strAfterText]</OutArgument>
               </Assign.To>
@@ -170,31 +171,31 @@
               </Assign.Value>
             </Assign>
           </Sequence>
-          <ui:IfElseIf DisplayName="Else If | Checking Extracted Name" sap:VirtualizedContainerService.HintSize="496,52" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
+          <ui:IfElseIf DisplayName="Else If | Checking Extracted Name" sap:VirtualizedContainerService.HintSize="496,54" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
             <ui:IfElseIf.ConditionBlocks>
               <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
                 <ui:IfElseIfBlock BlockType="If" Condition="[strExtractedName.Length &lt; 5]">
                   <ui:IfElseIfBlock.Then>
-                    <Sequence DisplayName="Body | Extracted String Length Check" sap:VirtualizedContainerService.HintSize="450,201" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                    <Sequence DisplayName="Body | Extracted String Length Check" sap:VirtualizedContainerService.HintSize="450,202.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_13">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Throw DisplayName="Throw | Invalid Name" Exception="[New BusinessRuleException(in_Config(&quot;NameInvalidException&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                      <Throw DisplayName="Throw | Invalid Name" Exception="[New BusinessRuleException(in_Config(&quot;NameInvalidException&quot;).ToString+&quot; for : &quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString+&quot; - &quot; +in_TransactionItem.SpecificContent(&quot;SharepointEmpName&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="388,92" sap2010:WorkflowViewState.IdRef="Throw_2" />
                     </Sequence>
                   </ui:IfElseIfBlock.Then>
                 </ui:IfElseIfBlock>
                 <ui:IfElseIfBlock BlockType="ElseIf" Condition="[InStr(strExtractedName,environment.NewLine) &gt; 0]">
                   <ui:IfElseIfBlock.Then>
-                    <Sequence DisplayName="Body | New Line Check" sap:VirtualizedContainerService.HintSize="450,201" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                    <Sequence DisplayName="Body | New Line Check" sap:VirtualizedContainerService.HintSize="450,202.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_14">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Throw DisplayName="Throw | Additional Line Space Found" Exception="[New BusinessRuleException(in_Config(&quot;NameNewLineException&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="388,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                      <Throw DisplayName="Throw | Additional Line Space Found" Exception="[New BusinessRuleException(in_Config(&quot;NameNewLineException&quot;).ToString+&quot; for : &quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString+&quot; - &quot; +in_TransactionItem.SpecificContent(&quot;SharepointEmpName&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="388,92" sap2010:WorkflowViewState.IdRef="Throw_1" />
                     </Sequence>
                   </ui:IfElseIfBlock.Then>
                 </ui:IfElseIfBlock>
@@ -326,14 +327,14 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:IfElseIf>
-          <Sequence DisplayName="Sequence | Get SSN and DOB from PDF Extract" sap:VirtualizedContainerService.HintSize="496,637" sap2010:WorkflowViewState.IdRef="Sequence_20">
+          <Sequence DisplayName="Sequence | Get SSN and DOB from PDF Extract" sap:VirtualizedContainerService.HintSize="496,646.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_20">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign DisplayName="Assign | Before Text Identifier | SSN DOB" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_28">
+            <Assign DisplayName="Assign | Before Text Identifier | SSN DOB" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_28">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[strBeforeText]</OutArgument>
               </Assign.To>
@@ -341,7 +342,7 @@
                 <InArgument x:TypeArguments="x:String">[in_Config("SsnDobExtractor").ToString.Split("|"c)(0)]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign DisplayName="Assign | After Text Identifier | SSN DOB" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_29">
+            <Assign DisplayName="Assign | After Text Identifier | SSN DOB" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_29">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[strAfterText]</OutArgument>
               </Assign.To>
@@ -349,7 +350,7 @@
                 <InArgument x:TypeArguments="x:String">[in_Config("SsnDobExtractor").ToString.Split("|"c)(1)]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign DisplayName="Assign | Extract SSN DOB" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_30">
+            <Assign DisplayName="Assign | Extract SSN DOB" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_30">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[strSSNDOB]</OutArgument>
               </Assign.To>
@@ -393,7 +394,7 @@
             </Assign>
             <ui:Matches BuilderPattern="((?&gt;[a-zA-Z\d!#$%&amp;'*+\-\/=?^_`{|}~]+\x20*|&quot;((?=[\x01-\x7f])[^&quot;\\]|\\[\x01-\x7f])*&quot;\x20*)*(?&lt;angle&gt;&lt;))?((?!\.)(?&gt;\.?[a-zA-Z\d!#$%&amp;'*+\-\/=?^_`{|}~]+)+|&quot;((?=[\x01-\x7f])[^&quot;\\]|\\[\x01-\x7f])*&quot;)@(((?!-)[a-zA-Z\d\-]+(?&lt;!-)\.)+[a-zA-Z]{2,}|\[(((?(?&lt;!\[)\.)(25[0-5]|2[0-4]\d|[01]?\d?\d)){4}|[a-zA-Z\d\-]*[a-zA-Z\d]:((?=[\x01-\x7f])[^\\\[\]]|\\[\x01-\x7f])+)\])(?(angle)&gt;)" DisplayName="Find Matching Patterns | Checking for Email Format Match" FirstMatch="[strExtractedEmail]" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[strExtractedEmail]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;EMAIL&quot;,&quot;OperationName&quot;:&quot;Email&quot;,&quot;OperationValue&quot;:&quot;((?&gt;[a-zA-Z\\d!#$%&amp;'*+\\-\\\/=?^_`{|}~]+\\x20*|\&quot;((?=[\\x01-\\x7f])[^\&quot;\\\\]|\\\\[\\x01-\\x7f])*\&quot;\\x20*)*(?&lt;angle&gt;&lt;))?((?!\\.)(?&gt;\\.?[a-zA-Z\\d!#$%&amp;'*+\\-\\\/=?^_`{|}~]+)+|\&quot;((?=[\\x01-\\x7f])[^\&quot;\\\\]|\\\\[\\x01-\\x7f])*\&quot;)@(((?!-)[a-zA-Z\\d\\-]+(?&lt;!-)\\.)+[a-zA-Z]{2,}|\\[(((?(?&lt;!\\[)\\.)(25[0-5]|2[0-4]\\d|[01]?\\d?\\d)){4}|[a-zA-Z\\d\\-]*[a-zA-Z\\d]:((?=[\\x01-\\x7f])[^\\\\\\[\\]]|\\\\[\\x01-\\x7f])+)\\])(?(angle)&gt;)&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="[in_Config(&quot;EmailRegexPattern&quot;).ToString]" RegexOption="IgnoreCase, Compiled" />
           </Sequence>
-          <If Condition="[IsNothing(strExtractedEmail)]" DisplayName="If | Validating Extracted Email" sap:VirtualizedContainerService.HintSize="496,52" sap2010:WorkflowViewState.IdRef="If_2">
+          <If Condition="[IsNothing(strExtractedEmail)]" DisplayName="If | Validating Extracted Email" sap:VirtualizedContainerService.HintSize="496,54" sap2010:WorkflowViewState.IdRef="If_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -401,13 +402,13 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence sap:VirtualizedContainerService.HintSize="376,178" sap2010:WorkflowViewState.IdRef="Sequence_18">
+              <Sequence sap:VirtualizedContainerService.HintSize="376,179.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_18">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Throw DisplayName="Throw | Invalid Email" Exception="[New BusinessRuleException(in_Config(&quot;EmailInvalidException&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_3" />
+                <Throw DisplayName="Throw | Invalid Email" Exception="[New BusinessRuleException(in_Config(&quot;EmailInvalidException&quot;).ToString+&quot; for : &quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString+&quot; - &quot; +in_TransactionItem.SpecificContent(&quot;SharepointEmpName&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="Throw_3" />
               </Sequence>
             </If.Then>
             <If.Else>
@@ -431,7 +432,7 @@
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="562.6666666666666,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -442,10 +443,10 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
             </ActivityAction.Argument>
-            <Rethrow DisplayName="Rethrow | BE" sap:VirtualizedContainerService.HintSize="334,25" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+            <Rethrow DisplayName="Rethrow | BE" sap:VirtualizedContainerService.HintSize="334,25.333333333333332" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
           </ActivityAction>
         </Catch>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="562.6666666666666,22" sap2010:WorkflowViewState.IdRef="Catch`1_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -456,7 +457,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Throw DisplayName="Throw | System Exception" Exception="[new Exception(exception.Message)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_4">
+            <Throw DisplayName="Throw | System Exception" Exception="[new Exception(exception.Message+&quot; for : &quot;+in_TransactionItem.SpecificContent(&quot;JrNumber&quot;).ToString+&quot; - &quot; +in_TransactionItem.SpecificContent(&quot;SharepointEmpName&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="Throw_4">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
