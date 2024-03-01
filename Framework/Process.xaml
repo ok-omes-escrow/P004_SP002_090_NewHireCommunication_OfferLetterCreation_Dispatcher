@@ -160,36 +160,16 @@
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetFieldsFromText.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,115.33333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="String_Operations\GetFieldsFromText.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_strExtractedText">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strExtractedText" />
-        </InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_strDateOfBirth">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedDOB" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_strExtractedEmail">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedEmail" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_strExtractedName">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedName" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_strFirstName">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedFirstName" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_strLastName">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedLastName" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_strMiddleName">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedMiddleName" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_strSSN">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="strExtractedSSN" />
-        </OutArgument>
-        <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">
-          <VisualBasicValue x:TypeArguments="ui:QueueItem" ExpressionText="in_TransactionItem" />
-        </InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strExtractedText">[strExtractedText]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strDateOfBirth">[strExtractedDOB]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strExtractedEmail">[strExtractedEmail]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strExtractedName">[strExtractedName]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strFirstName">[strExtractedFirstName]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strLastName">[strExtractedLastName]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strMiddleName">[strExtractedMiddleName]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strSSN">[strExtractedSSN]</OutArgument>
+        <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item | Offer Letter Performer Queue" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,198" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_Config(&quot;OLC_PerformerQueue&quot;).ToString]" Reference="[in_TransactionItem.Reference.ToString]">
@@ -204,8 +184,12 @@
         <InArgument x:TypeArguments="x:String" x:Key="TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="FullName">[strExtractedName]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="DateOfHiring" />
-        <InArgument x:TypeArguments="x:String" x:Key="Status" />
+        <InArgument x:TypeArguments="x:String" x:Key="DateOfHiring">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Status">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
         <InArgument x:TypeArguments="s:DateTime" x:Key="CreationDate">[Now]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="SSN">[strExtractedSSN]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="DateOfBirth">[strExtractedDOB]</InArgument>
