@@ -14,7 +14,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>871.3333333333334,5568</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>849.3333333333334,6173.333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetFieldsFromText_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -103,7 +103,7 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetFieldsFromText" sap:VirtualizedContainerService.HintSize="823.3333333333334,5503.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetFieldsFromText" sap:VirtualizedContainerService.HintSize="823.3333333333334,6108.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strExtractedName" />
       <Variable x:TypeArguments="x:String" Name="strBeforeText" />
@@ -125,7 +125,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch DisplayName="Try Catch | Get Fields From Extracted" sap:VirtualizedContainerService.HintSize="761.3333333333334,5208" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch | Get Fields From Extracted" sap:VirtualizedContainerService.HintSize="761.3333333333334,5813.333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -133,7 +133,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="722.6666666666666,4945.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_21">
+        <Sequence sap:VirtualizedContainerService.HintSize="722.6666666666666,5550.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_21">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -262,7 +262,7 @@
                                 </Sequence>
                               </ui:IfElseIfBlock.Then>
                             </ui:IfElseIfBlock>
-                            <ui:IfElseIfBlock BlockType="ElseIf" Condition="[strarrSplitNames.Length &gt; 2 And strarrSplitNames.Length &lt; 5]">
+                            <ui:IfElseIfBlock BlockType="ElseIf" Condition="[strarrSplitNames.Length &gt;= 3]">
                               <ui:IfElseIfBlock.Then>
                                 <Sequence DisplayName="Body | Assign First, Middle, Last Name" sap:VirtualizedContainerService.HintSize="496,572" sap2010:WorkflowViewState.IdRef="Sequence_17">
                                   <sap:WorkflowViewStateService.ViewState>
@@ -327,7 +327,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:IfElseIf>
-          <Sequence DisplayName="Sequence | Get SSN and DOB from PDF Extract" sap:VirtualizedContainerService.HintSize="572,1440" sap2010:WorkflowViewState.IdRef="Sequence_20">
+          <Sequence DisplayName="Sequence | Get SSN and DOB from PDF Extract" sap:VirtualizedContainerService.HintSize="660.6666666666666,1440" sap2010:WorkflowViewState.IdRef="Sequence_20">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
