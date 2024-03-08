@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>871.3333333333334,1739.3333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>873.3333333333334,1739.3333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="100">
@@ -172,18 +172,18 @@
         <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item | Offer Letter Performer Queue" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,198" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_Config(&quot;OLC_PerformerQueue&quot;).ToString]" Reference="[in_TransactionItem.Reference.ToString]">
+    <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item | Offer Letter Performer Queue" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,198" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_Config(&quot;OLC_PerformerQueue&quot;).ToString]" Reference="[in_TransactionItem.Reference.ToString.Trim]">
       <ui:AddQueueItem.ItemInformation>
-        <InArgument x:TypeArguments="x:String" x:Key="JrNumber">[in_TransactionItem.SpecificContent("JrNumber").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="JrNumber">[in_TransactionItem.SpecificContent("JrNumber").ToString.Trim]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="Email">[strExtractedEmail]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="FirstName">[strExtractedFirstName]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="MiddleName">[strExtractedMiddleName]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="LastName">[strExtractedLastName]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="Salary">[in_TransactionItem.SpecificContent("Salary").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="JobTitle">[in_TransactionItem.SpecificContent("JobTitle").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Salary">[in_TransactionItem.SpecificContent("Salary").ToString.Trim]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="JobTitle">[in_TransactionItem.SpecificContent("JobTitle").ToString.Trim]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="TransferType">[in_TransactionItem.SpecificContent("TransferType").ToString.Trim]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="FullName">[strExtractedName]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="SupervisorEmail">[in_TransactionItem.SpecificContent("SupervisorEmail").ToString.Trim]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="DateOfHiring">
           <Literal x:TypeArguments="x:String" Value="" />
         </InArgument>
@@ -193,8 +193,8 @@
         <InArgument x:TypeArguments="s:DateTime" x:Key="CreationDate">[Now]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="SSN">[strExtractedSSN]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="DateOfBirth">[strExtractedDOB]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="SharepointEmpName">[in_TransactionItem.SpecificContent("SharepointEmpName").ToString.Trim]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="BuildingName">[in_TransactionItem.SpecificContent("BuildingName").ToString.Trim]</InArgument>
       </ui:AddQueueItem.ItemInformation>
     </ui:AddQueueItem>
     <Assign DisplayName="Assign | List Filter" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
